@@ -1,0 +1,31 @@
+product_id,name,category,price,description
+P001,Wireless Mouse,Electronics,24.99,Ergonomic wireless mouse with adjustable sensitivity
+P002,Bluetooth Keyboard,Electronics,39.99,Compact wireless keyboard with quiet keys
+P003,USB-C Hub,Electronics,29.50,Multiport USB-C adapter for laptops
+P004,Noise-Canceling Headphones,Electronics,89.99,Wireless headphones with noise cancellation
+P005,Portable Bluetooth Speaker,Electronics,45.00,Water-resistant wireless speaker with clear sound
+P006,Webcam HD,Electronics,54.99,High definition webcam for video calls
+P007,Smartphone Stand,Electronics,15.99,Adjustable desktop stand for phones
+P008,Mechanical Gaming Keyboard,Electronics,74.99,Mechanical keyboard with backlit keys
+P009,LED Desk Lamp,Home,32.00,Dimmable LED lamp for a home office desk
+P010,Memory Foam Pillow,Home,28.99,Supportive memory foam pillow for comfortable sleep
+P011,Ceramic Coffee Mug,Home,12.50,Reusable ceramic mug for coffee and tea
+P012,Stainless Steel Water Bottle,Home,21.99,Insulated reusable bottle keeps drinks cold
+P013,Weighted Blanket,Home,79.00,Soft weighted blanket for restful nights
+P014,Storage Basket,Home,18.75,Woven basket for organizing household items
+P015,Nonstick Frying Pan,Kitchen,34.99,Durable nonstick pan for everyday cooking
+P016,Chef Knife,Kitchen,42.00,Sharp stainless steel knife for food preparation
+P017,Bamboo Cutting Board,Kitchen,19.99,Easy-care bamboo board for chopping vegetables
+P018,Glass Food Containers,Kitchen,27.50,Reusable glass containers with tight-fitting lids
+P019,Digital Kitchen Scale,Kitchen,22.99,Compact precision scale for cooking and baking
+P020,Running Shoes,Sports,68.00,Lightweight cushioned shoes for running and training
+P021,Yoga Mat,Sports,26.99,Non-slip exercise mat for yoga and stretching
+P022,Resistance Bands,Sports,14.50,Portable resistance bands for strength workouts
+P023,Insulated Gym Bottle,Sports,23.99,Leakproof bottle for hydration during exercise
+P024,Adjustable Dumbbell,Sports,119.00,Space-saving adjustable weight for home workouts
+P025,Facial Cleanser,Beauty,16.99,Gentle daily cleanser for fresh clean skin
+P026,Moisturizing Face Cream,Beauty,24.00,Hydrating face cream for everyday skincare
+P027,Reusable Makeup Bag,Beauty,17.50,Compact zippered bag for makeup and toiletries
+P028,Hair Dryer,Beauty,49.99,Lightweight hair dryer with multiple heat settings
+P029,Sunscreen Lotion,Beauty,13.99,Daily moisturizing sunscreen with broad coverage
+P030,Travel Backpack,Accessories,55.00,Durable backpack with organized travel compartments
