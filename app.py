@@ -27,38 +27,22 @@ def run_streamlit_app() -> None:
     import pandas as pd
     import plotly.express as px
     import streamlit as st
-    from pyspark.sql import SparkSession
-    from pyspark.sql import functions as F
 
     data_path = Path(__file__).parent / "data" / "products.csv"
 
     @st.cache_data(show_spinner=False)
     def load_products_and_category_counts(csv_path: str) -> tuple[pd.DataFrame, pd.DataFrame]:
-        spark = (
-            SparkSession.builder.master("local[1]")
-            .appName("ShopSmart Product Recommendations")
-            .config("spark.ui.enabled", "false")
-            .config("spark.driver.host", "127.0.0.1")
-            .getOrCreate()
-        )
-        products = (
-            spark.read.option("header", True).option("inferSchema", True).csv(csv_path)
-            .withColumn("product_id", F.trim(F.col("product_id").cast("string")))
-            .withColumn("name", F.trim(F.col("name")))
-            .withColumn("category", F.trim(F.col("category")))
-            .withColumn("description", F.trim(F.coalesce(F.col("description"), F.lit(""))))
-            .withColumn("price", F.col("price").cast("double"))
-            .filter(F.col("product_id").isNotNull() & (F.col("product_id") != ""))
-            .filter(F.col("name").isNotNull() & (F.col("name") != ""))
-            .filter(F.col("price").isNotNull() & ~F.isnan(F.col("price")) & (F.col("price") >= 0))
-            .withColumn("category", F.when(F.col("category").isNull() | (F.col("category") == ""), "Uncategorized").otherwise(F.col("category")))
-            .dropDuplicates(["product_id"])
-            .withColumn("_name_key", F.lower(F.col("name")))
-            .dropDuplicates(["_name_key"])
-            .drop("_name_key")
-        )
-        category_counts = products.groupBy("category").count().orderBy("category")
-        return products.toPandas(), category_counts.toPandas()
+        products = pd.read_csv(csv_path)
+        products = products.rename(columns=lambda column: column.strip().lower())
+        products["product_id"] = products["product_id"].astype(str).str.strip()
+        products["name"] = products["name"].astype(str).str.strip()
+        products["category"] = products["category"].fillna("Uncategorized").astype(str).str.strip()
+        products["description"] = products["description"].fillna("").astype(str).str.strip()
+        products["price"] = pd.to_numeric(products["price"], errors="coerce")
+        products = products[products["product_id"].ne("") & products["name"].ne("") & products["price"].notna() & (products["price"] >= 0)].copy()
+        products = products.drop_duplicates(subset=["product_id"]).drop_duplicates(subset=["name"]).sort_values("name", kind="stable").reset_index(drop=True)
+        category_counts = products.groupby("category", dropna=False).size().reset_index(name="count").sort_values("category", kind="stable")
+        return products, category_counts
 
     def tokens(text: str) -> set[str]:
         return set(re.findall(r"[a-z0-9]+", text.lower()))
